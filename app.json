@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "practice2",
-    "scheme": "practice2",
-    "slug": "practice2",
+    "name": "aishare",
+    "scheme": "aishare",
+    "slug": "aishare",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
