@@ -3,10 +3,48 @@
 //layout.js is present in all navigation panes - so a nav bar or footer would be here
 //This is your main file where you define the overall structure of your application. 
 import { StyleSheet, Text, View } from 'react-native'
-import { Slot, Stack } from 'expo-router'
+import { SplashScreen, Stack } from 'expo-router'
 import React from 'react'
+import { useFonts } from 'expo-font'
+import { useEffect } from 'react'
+
+SplashScreen.preventAutoHideAsync();
+//Makes the native splash screen (configured in app.json) remain visible until hideAsync is called.
+
+
+
 
 const RootLayout = () => {
+
+  //use "useFonts" it as you would any typical hook by doing const
+  // fonts loaded is the first parameter, and error is the second in case not loaded correctly
+  //call on the hook by type it "useFonts()" and passing in objects in {} of all the fonts we will use
+  //start with a string and specify name and then link via a : and after you will do requite(../assets/fonts/FONTNAME/ttf),
+  const [fontsLoaded, error] = useFonts({
+    "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
+    "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
+    "Poppins-ExtraBold": require("../assets/fonts/Poppins-ExtraBold.ttf"),
+    "Poppins-ExtraLight": require("../assets/fonts/Poppins-ExtraLight.ttf"),
+    "Poppins-Light": require("../assets/fonts/Poppins-Light.ttf"),
+    "Poppins-Medium": require("../assets/fonts/Poppins-Medium.ttf"),
+    "Poppins-Regular": require("../assets/fonts/Poppins-Regular.ttf"),
+    "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
+    "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
+  });
+  
+  useEffect(() => {
+//giving it a callback function
+//allows us to perform actions while the screen/page is loading
+    if(error) throw error;
+    if (fontsLoaded) SplashScreen.hideAsync();
+  },  [fontsLoaded, error])
+//dependency array
+//recall function when fonts loaded changed and/or whenevr there is an error
+  if (!fontsLoaded && !error) return null;
+  //if no fonts loaded and no error then it will display nothing
+
+  
+
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false}} />
