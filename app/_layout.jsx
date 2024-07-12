@@ -8,10 +8,19 @@ import React from 'react'
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react'
 
+
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+  default: "native",
+});
+// React was not working on Web view as compapred to ExpoGo and it seemed like a css formating issue with Nativewind on browser
+// credit to https://github.com/nativewind/nativewind/issues/470#issuecomment-1589092569
+// this allows native wind to be able to run in web view with same formats as are seen in the app view on ExpoGo 
+
+
 SplashScreen.preventAutoHideAsync();
 //Makes the native splash screen (configured in app.json) remain visible until hideAsync is called.
-
-
 
 
 const RootLayout = () => {
