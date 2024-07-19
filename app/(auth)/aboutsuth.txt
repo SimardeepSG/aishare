@@ -1,0 +1,6 @@
+Any folder with parenthesis aruond it and words in the center -> 
+
+this is considered a route group that allows me to add additional screens or pages within it with a special layout  
+
+Why create a seprate layout for this group of tabs? -> well we are talking about the authentication screens and login screens 
+that do not need the tabs at the bottom that the home scree, on the other hand, would need
