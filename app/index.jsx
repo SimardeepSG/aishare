@@ -16,7 +16,7 @@ export default function App() {
       <Text className="text-3xl font-pregular">Aora!</Text>
       <Text className="font-pblack"></Text>
       <StatusBar style="auto" />
-      <Link href="/profile" style = {{ color: 'blue' }}> Go to Profile </Link>
+      <Link href="/home" style = {{ color: 'blue' }}> Go to Profile </Link>
       {/* in order to create links to different pages */}
     </View>
   );
