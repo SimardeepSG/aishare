@@ -12,6 +12,7 @@ import { Image, ScrollView, Text, View } from 'react-native';
 import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants';
+import CustomButton from '../components/CustomButton';
 
 //allows custom routing tabs to be linked to another screen
 //INDEX.js is ALWAYS mapped to the main / directory or we call home directory
@@ -61,7 +62,16 @@ export default function App() {
           >
             Where creativity meets innovation: embark on a journey of limitless exploration with Aora
           </Text>
+          <CustomButton
+            // passing through props
+            title="Continue with Email"
+            handlePress={() => { }}
+            // empty callback function
+            containerStyles="w-full mt-7"
 
+          >
+
+          </CustomButton>
         </View>
 
       </ScrollView>
