@@ -7,6 +7,7 @@ import { SplashScreen, Stack } from 'expo-router'
 import React from 'react'
 import { useFonts } from 'expo-font'
 import { useEffect } from 'react'
+import GlobalProvider from '../context/GlobalProvider'
 
 
 import { NativeWindStyleSheet } from "nativewind";
@@ -55,14 +56,17 @@ const RootLayout = () => {
 
 
   return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      {/* header shown will  display the name of the screen, in this case inde was at the top*/}
-      {/* removes ugly top whilte bar that is auto generated */}
-      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      {/* <Stack.Screen name="(/search/[query])" options={{ headerShown: false }} /> */}
-    </Stack>
+    <GlobalProvider>
+      {/* see details in context GlobalProvider.js for details on why this is here*/}
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* header shown will  display the name of the screen, in this case inde was at the top*/}
+        {/* removes ugly top whilte bar that is auto generated */}
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="(/search/[query])" options={{ headerShown: false }} /> */}
+      </Stack>
+    </GlobalProvider>
   )
 
 }

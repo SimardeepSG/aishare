@@ -14,12 +14,18 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants';
 import CustomButton from '../components/CustomButton';
 import { Redirect, router } from 'expo-router';
+import { useGlobalContext } from '../context/GlobalProvider';
 
 //allows custom routing tabs to be linked to another screen
 //INDEX.js is ALWAYS mapped to the main / directory or we call home directory
 //When you create a new folder in react and you put an index.js that is the default route that people will experience uncless you provide na links
 
 export default function App() {
+  const { isLoading, isLoggedIn } = useGlobalContext();
+
+  if (!isLoading && isLoggedIn) return <Redirect href="/home" />
+  //this makes it so that the onboarding screen goes away and we become tied to home 
+
   return (
     // ensure content does not overlap with OS trinkets like top bar and bottom bar */}
     <SafeAreaView
