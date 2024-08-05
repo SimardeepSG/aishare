@@ -13,6 +13,7 @@ import { Link } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../constants';
 import CustomButton from '../components/CustomButton';
+import { Redirect, router } from 'expo-router';
 
 //allows custom routing tabs to be linked to another screen
 //INDEX.js is ALWAYS mapped to the main / directory or we call home directory
@@ -28,7 +29,7 @@ export default function App() {
       <ScrollView contentContainerStyle={{ height: '100%' }}>
         {/* 100 percent so whole screen is scrollable. Content hieght maybe larger than some devices support */}
         <View
-          className="w-full justify-center items-center h-full px-4">
+          className="w-full justify-center items-center min-h-[85vh] px-4">
           {/* px is for padding */}
           <Image
             source={images.logo}
@@ -65,8 +66,9 @@ export default function App() {
           <CustomButton
             // passing through props
             title="Continue with Email"
-            handlePress={() => { }}
-            // empty callback function
+            handlePress={() => router.push('/sign-in')}
+            // knows to go to the auth folder an go to the sign-in jsx file
+            // empty callback function is {() => { }}
             containerStyles="w-full mt-7"
 
           >
@@ -76,6 +78,7 @@ export default function App() {
 
       </ScrollView>
       <StatusBar backgroundColor='#161622' style='light' />
+      {/* status bar allows you to see battery percentage and time and wifi stuff like that at the top of the device - useful if you want to show or hide it in the application */}
 
 
 

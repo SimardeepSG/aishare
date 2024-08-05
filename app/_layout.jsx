@@ -40,27 +40,31 @@ const RootLayout = () => {
     "Poppins-SemiBold": require("../assets/fonts/Poppins-SemiBold.ttf"),
     "Poppins-Thin": require("../assets/fonts/Poppins-Thin.ttf"),
   });
-  
+
   useEffect(() => {
-//giving it a callback function
-//allows us to perform actions while the screen/page is loading
-    if(error) throw error;
+    //giving it a callback function
+    //allows us to perform actions while the screen/page is loading
+    if (error) throw error;
     if (fontsLoaded) SplashScreen.hideAsync();
-  },  [fontsLoaded, error])
-//dependency array
-//recall function when fonts loaded changed and/or whenevr there is an error
+  }, [fontsLoaded, error])
+  //dependency array
+  //recall function when fonts loaded changed and/or whenevr there is an error
   if (!fontsLoaded && !error) return null;
   //if no fonts loaded and no error then it will display nothing
 
-  
+
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false}} />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       {/* header shown will  display the name of the screen, in this case inde was at the top*/}
+      {/* removes ugly top whilte bar that is auto generated */}
+      <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      {/* <Stack.Screen name="(/search/[query])" options={{ headerShown: false }} /> */}
     </Stack>
   )
-  
+
 }
 
 export default RootLayout
@@ -85,16 +89,16 @@ export default RootLayout
 
 
 // return (
-  //   <>
-  //     <Text> Header </Text>
-  //     <Slot />
-  //     <Text> Fooer </Text>
-  //   </>
-  //using slot renders the index.jsx file here onto layout.jsx
-  //reders current child route
-  //can be wrapped with diff components by adding into {}
+//   <>
+//     <Text> Header </Text>
+//     <Slot />
+//     <Text> Fooer </Text>
+//   </>
+//using slot renders the index.jsx file here onto layout.jsx
+//reders current child route
+//can be wrapped with diff components by adding into {}
 
-  // )
+// )
 //   return (
 //     <View style={styles.container}>
 //       <Text>RootLayout</Text>
