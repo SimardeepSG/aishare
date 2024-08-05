@@ -1,11 +1,11 @@
 //this page was copied from the the sign in page and duplicated but only a few things were chanegd which are shown via comments below
 
-import { View, Text, SafeAreaView, ScrollView, Image } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Image, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { images } from "../../constants"
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
-import { Link } from 'expo-router'
+import { Link, router } from 'expo-router'
 import { createUser } from '../../lib/appwrite'
 
 const SignUp = () => {
@@ -16,9 +16,24 @@ const SignUp = () => {
   })
   // user name was aded
 
-  const submit = () => {
-    createUser();
-    console.log('hello');
+  const submit = async () => {
+    // recall that is you have await anywhere in a function it has to be async
+    if (!form.username || !form.email || !form.password) {
+      Alert.alert('Error', 'Please fill in all the fields')
+    }
+    setIsSubmitting(true)
+
+    try {
+      const result = await createUser(form.email, form.password, form.username)
+      //we have to pass 3 thrings to the user function one by one 
+
+      router.replace('/home')
+
+    } catch (error) {
+      Alert.alert('Error', error.message)
+    } finally {
+      setIsSubmitting(false)
+    }
 
   }
 
@@ -61,7 +76,7 @@ const SignUp = () => {
           />
 
           <CustomButton
-            title="Sign In"
+            title="Sign Up"
             handlePress={submit}
             containerStyles="mt-7"
             isLoading={isSubmitting}
