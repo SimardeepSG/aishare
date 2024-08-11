@@ -1,5 +1,5 @@
-import { View, Text, Image } from 'react-native'
-import React from 'react'
+import { View, Text, Image, RefreshControl, RefreshControlComponent } from 'react-native'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { FlatList } from 'react-native'
 import { images } from '../../constants'
@@ -8,6 +8,17 @@ import Trending from '../../components/Trending'
 import EmptyState from '../../components/EmptyState'
 
 const Home = () => {
+  const [refreshing, setRefreshing] = useState(false)
+  //create the refreshing state to be used when refreshing the page
+  const onRefresh = async () => {
+    //async error function 
+    setRefreshing(true)
+    //later on will add the recall function to recall the posts to see if any new videos have appeared 
+    //then once retrieved we will set refreshing to false
+    setRefreshing(false)
+    //now we can pass the variabels to the refresh control function 
+
+  }
   return (
     //you cannot do both horizontal and veritcal scrolling lists in scroll view which is why flat list is used independently of scroll view here
     <SafeAreaView className="bg-primary h-full">
@@ -64,13 +75,20 @@ const Home = () => {
             </View>
           </View>
         )}
+        //the following properties are properties/attribute sof the flatlist component
         ListEmptyComponent={() => (
           <EmptyState
             title="No Videos Found"
             subtitle="Be the first one to upload a video"
           />
         )}
-      //a function where we can specify what happens when our list is empty
+        //a function where we can specify what happens when our list is empty
+
+        //flatlist has a refresh control
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      // to the refresh control we pass the refresh control componenet 
+
+
       />
     </SafeAreaView>
   )
